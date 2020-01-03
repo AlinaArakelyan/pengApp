@@ -11,7 +11,8 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.create(strong_params)
+        @user = User.find_or_create_by(name: params[:user])
+        @post = Post.create(user: @user, post: params[:post])
         if @post.valid?
             render json: @post
         else 
@@ -20,17 +21,27 @@ class PostsController < ApplicationController
     end 
 
     def update
+        # @likes = Like.find(params[post_id:[:id])
+        # @like = Like.create(post_id: params[:id])
+        @like = Like.create(post_id: params[:id])
         @post = Post.find(params[:id])
-        @post.update(post_params)
+        # @post.update(strong_params)
         render json: @post
     end
 
-    def delete
+    def destroy
         @post = Post.find(params[:id])
-        @post.delete
+        @post.destroy
         render json: @posts
     end 
-
+    
+    private
+    
+    def strong_params
+        params.permit(:post, :likes)
+    end
+    
 end
 
+# // shovel onto association, build or create ex: post.likes.create
 

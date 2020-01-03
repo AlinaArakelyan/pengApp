@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
     def index
        @comments = Comment.all
-    render json: @comments
+        render json: @comments
     end 
 
     def show
@@ -15,11 +15,11 @@ class CommentsController < ApplicationController
         render json: @comment
     end 
 
-    def update
-        @comment = Comment.find(params[:id])
-        @comment.update(comment_params)
-        render json: @comment
-    end
+    # def update
+    #     @comment = Comment.find(params[:id])
+    #     @comment.update(comment_params)
+    #     render json: @comment
+    # end
 
     def delete
         @comment = comment.find(params[:id])
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     private
 
     def strong_params
-        params.permit(:name)
+        params.permit(:post_id, :comment)
     end
 
 

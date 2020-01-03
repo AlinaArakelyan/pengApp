@@ -21,16 +21,16 @@ class LikesController < ApplicationController
         render json: @like
     end
 
-    def delete
-        @like = Like.find(params[:id])
-        @like.delete
-        render json: @likes
-    end 
+    # def delete
+    #     @like = Like.find(params[:id])
+    #     @like.delete
+    #     render json: @likes
+    # end 
 
     private
 
     def strong_params
-        params.permit(:name)
+        params.permit(:post_id, :likes)
     end
 end
 
