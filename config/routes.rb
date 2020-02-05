@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :likes
   resources :comments
   resources :posts
-  resources :users, only: [:index, :show]
+  resources :users
 
   post '/login', to: 'auth#login'
   get '/persist', to: 'auth#persist'

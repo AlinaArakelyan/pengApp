@@ -16,6 +16,7 @@ class AuthController < ApplicationController
             token = JWT.decode(encoded_token, secret)
             user_id = token[0]['user_id']
             user = User.find(user_id)
+             
             render json: user
         end
     end
