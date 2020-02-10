@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     end
 
     def create
-        @user = User.find_or_create_by(name: params[:user])
+        # @user = User.find_or_create_by(name: params[:user])
         @post = Post.create(user: @user, post: params[:post])
         if @post.valid?
             render json: @post
@@ -21,8 +21,6 @@ class PostsController < ApplicationController
     end 
 
     def update
-        # @likes = Like.find(params[post_id:[:id])
-        # @like = Like.create(post_id: params[:id])
         @like = Like.create(post_id: params[:id])
         @post = Post.find(params[:id])
         # @post.update(strong_params)
