@@ -12,7 +12,8 @@ class PostsController < ApplicationController
 
     def create
         # @user = User.find_or_create_by(name: params[:user])
-        @post = Post.create(user: @user, post: params[:post])
+        # @user = User.find_by(params[:name])
+        @post = Post.create(params[:post])
         if @post.valid?
             render json: @post
         else 
