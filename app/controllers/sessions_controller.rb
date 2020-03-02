@@ -35,8 +35,15 @@ class SessionsController < ApplicationController
           logged_out: true
         }
       end
+
+      def reset_session
+        @_request.reset_session
+      end
+      
     private
     def session_params
         params.require(:user).permit(:username, :password)
       end
+
+
     end

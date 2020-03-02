@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
     def index
-        @posts = Post.all
+        @posts = Post.order(id: :desc)
         render json: @posts
     end 
 
@@ -12,8 +12,8 @@ class PostsController < ApplicationController
 
     def create
         # @user = User.find_or_create_by(name: params[:user])
-        # @user = User.find_by(params[:name])
-        @post = Post.create(params[:post])
+        @user = User.find_by(params[:name])
+        @post = Post.create(user: @user, post: params[:post])
         if @post.valid?
             render json: @post
         else 
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
     private
     
     def strong_params
-        params.permit(:post, :likes)
+        params.permit(:user, :post, :likes)
     end
     
 end
