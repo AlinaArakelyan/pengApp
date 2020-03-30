@@ -45,3 +45,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rack-cors'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+# Import the library
+require 'datadog/statsd'
+
+# Create a DogStatsD client instance.
+statsd = Datadog::Statsd.new('localhost', 8125)
